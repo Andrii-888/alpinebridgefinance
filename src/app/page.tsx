@@ -1,17 +1,16 @@
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-white">
-      <div className="text-center">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-          AlpineBridgeFinance
-        </h1>
-        <p className="mt-4 text-lg text-gray-600">
-          Fiat ↔ Crypto ↔ Gold — Lugano, Switzerland
-        </p>
-        <p className="mt-2 text-sm text-gray-500">
-          Official platform coming soon
-        </p>
-      </div>
+    <main className="flex min-h-screen flex-col items-center justify-center p-8">
+      <h1 className="text-4xl font-bold mb-4">AlpineBridgeFinance</h1>
+      <p className="text-lg text-center">
+        <span className="text-red-500 font-semibold">Fiat</span> ↔{" "}
+        <span className="text-green-500 font-semibold">Crypto</span> ↔{" "}
+        <span className="text-yellow-500 font-semibold">Gold</span> —{" "}
+        <span className="text-blue-500">Lugano, Switzerland</span>
+      </p>
+      <p className="mt-2 text-gray-500 text-sm">
+        Official platform coming soon
+      </p>
     </main>
   );
 }

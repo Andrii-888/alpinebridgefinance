@@ -23,7 +23,28 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="google" content="notranslate" />
-        <link rel="icon" href="/favicon.ico?v=7" type="image/x-icon" />
+        {/* главный фавикон — ставим ПЕРВЫМ и ломаем кэш версией */}
+        <link rel="icon" href="/favicon.ico?v=13" />
+
+        {/* (опционально) png-версии — можно оставить */}
+        <link rel="icon" type="image/png" sizes="16x16" href="/alpine-16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/alpine-32.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="/alpine-48.png" />
+
+        {/* iOS / Android */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/alpine-apple.png" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="/alpine-192.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="512x512"
+          href="/alpine-512.png"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900`}

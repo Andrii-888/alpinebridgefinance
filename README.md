@@ -1,36 +1,213 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AlpineBridgeFinance
 
-## Getting Started
+Website & future platform for **fiat ↔ crypto ↔ gold** exchange guidance in Lugano, Switzerland.  
+Built with [Next.js](https://nextjs.org) (TypeScript + Tailwind), bootstrapped via [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+---
+
+## 🚀 Getting Started
 
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
+ with your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Start editing by modifying src/app/page.tsx.
+The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📦 Tech Stack
 
-## Learn More
+Framework: Next.js 15 (App Router) + TypeScript
 
-To learn more about Next.js, take a look at the following resources:
+Styling: Tailwind CSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Fonts: next/font
+ with Geist
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deployment: Vercel
 
-## Deploy on Vercel
+🗺️ Site Structure (MVP → Growth)
+Public routes
+/                      → Home
+/services              → Services (fiat↔crypto, gold, guidance)
+/process               → How it works (step by step)
+/compliance            → KYC/AML & crypto screening
+/pricing               → Pricing / commissions / limits
+/offices               → Offices & contacts (map, hours)
+/contact               → Lead form
+/legal/terms           → Terms of use
+/legal/privacy         → Privacy policy
+/faq                   → FAQ
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+Future routes
+/partner               → Partner program / intermediary contract
+/status                → Client portal (status of deals)
+/admin                 → Admin dashboard (auth required)
+/kyc                   → Document upload (provider integration)
+
+
+
+📁 Project Layout
+src/
+  app/
+    (public)/
+      page.tsx
+    services/
+    process/
+    compliance/
+    pricing/
+    offices/
+    contact/
+    legal/
+      terms/page.tsx
+      privacy/page.tsx
+
+  components/
+    ui/          # reusable UI (Button, Input…)
+    layout/      # Header, Footer, LangSwitch
+    sections/    # page sections (Hero, Features, Steps…)
+
+  lib/
+    config.ts    # site config, office addresses
+    validators.ts
+    mailer.ts    # (later) form notifications
+
+public/
+  favicon.ico
+  apple-touch-icon.png (opt.)
+
+
+
+
+
+
+  🧭 Navigation
+
+Home
+
+Services
+
+Process
+
+Compliance
+
+Pricing
+
+Offices
+
+Contact
+
+Footer: Terms · Privacy · FAQ · Socials
+
+🧩 Content Overview
+Home
+
+Title: AlpineBridgeFinance
+
+Subtitle: Fiat ↔ Crypto ↔ Gold — Lugano, Switzerland
+
+3–4 highlights (safety, transparency, licensed offices, KYC guidance)
+
+CTA → /contact
+
+Services
+
+Exchange guidance (fiat ↔ crypto) & gold purchase
+
+Explanation of process, rules, documents
+
+Disclaimer: not advertising partner brand; independent intermediary
+
+Process
+
+Request
+
+Rules / amounts explained
+
+KYC
+
+Office visit scheduled
+
+Exchange executed
+
+Confirmation / receipt
+
+Compliance
+
+What is KYC
+
+AML & crypto wallet screening
+
+Principles: legality, confidentiality, licensed offices only
+
+Pricing
+
+Rules by amount (e.g. up to 1,000 CHF no ID; higher requires KYC)
+
+Example fees (to be updated with partner data)
+
+Offices
+
+Addresses, map, hours
+
+Buttons: Call · Route · WhatsApp
+
+Contact
+
+Form: name, email/phone, amount, currency, notes, consent
+
+Validation (zod), submit to API (later to DB/CRM)
+
+🧪 Roadmap
+MVP (Weeks 1–2)
+
+Pages: Home, Services, Process, Compliance, Offices, Contact, Legal
+
+Header/Footer, base typography
+
+Contact form with validation
+
+v1 (Weeks 3–4)
+
+i18n (IT, EN, DE, FR, RU, 中文)
+
+Simple CRM table (leads)
+
+SEO: metadata, sitemap, robots
+
+v2
+
+Form email/webhook notifications
+
+Dynamic pricing calculator
+
+KYC/AML integrations
+
+🔐 Legal Notice
+
+AlpineBridgeFinance acts as an intermediary: no custody of funds, no financial advice.
+
+All deals are executed in licensed partner offices.
+
+Partner brand use is restricted (requires explicit agreement).
+
+📚 Learn More
+
+Next.js Documentation
+
+Learn Next.js
+
+Next.js GitHub Repository
+
+☁️ Deploy on Vercel
+
+The easiest way to deploy is via Vercel Platform.
+
+See deployment docs.
+
+

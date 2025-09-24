@@ -1,36 +1,106 @@
+// import Link from "next/link";
+
+// export default function Home() {
+//   return (
+//     <div className="flex flex-col">
+//       {/* HERO */}
+//       <section className="flex min-h-[72vh] flex-col items-center justify-center text-center px-4">
+//         <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
+//           AlpineBridgeFinance
+//         </h1>
+
+//         <p className="mt-4 text-lg md:text-xl">
+//           <span className="text-slate-700"> </span>
+//           <span className="text-rose-500 font-medium">Fiat</span> ↔{" "}
+//           <span className="text-emerald-600 font-medium">Crypto</span> ↔{" "}
+//           <span className="text-amber-600 font-medium">Gold</span>{" "}
+//           <span className="text-slate-500">— Lugano, Switzerland</span>
+//         </p>
+
+//         <p className="mt-2 text-sm text-slate-500">
+//           Official platform coming soon
+//         </p>
+
+//         <div className="mt-8 flex items-center gap-3">
+//           <Link
+//             href="/contact"
+//             className="rounded-full bg-black text-white px-5 py-2.5 text-sm md:text-base hover:opacity-90 transition"
+//           >
+//             Contact
+//           </Link>
+//           <Link
+//             href="/services"
+//             className="rounded-full border border-slate-300 px-5 py-2.5 text-sm md:text-base hover:bg-slate-50 transition"
+//           >
+//             Services
+//           </Link>
+//         </div>
+//       </section>
+
+//       {/* FEATURES */}
+//       <section className="px-4 pb-20">
+//         <div className="grid gap-4 md:grid-cols-3 max-w-5xl mx-auto">
+//           <div className="rounded-2xl border border-slate-200 p-6 bg-white">
+//             <h3 className="font-semibold text-slate-900">Безопасно</h3>
+//             <p className="mt-2 text-slate-600 text-sm">
+//               Оффлайн-сделки в лицензированных швейцарских офисах. Ваши средства
+//               не передаются третьим лицам.
+//             </p>
+//           </div>
+//           <div className="rounded-2xl border border-slate-200 p-6 bg-white">
+//             <h3 className="font-semibold text-slate-900">Легально</h3>
+//             <p className="mt-2 text-slate-600 text-sm">
+//               KYC/AML сопровождение, правила сумм и документов — всё прозрачно и
+//               по закону.
+//             </p>
+//           </div>
+//           <div className="rounded-2xl border border-slate-200 p-6 bg-white">
+//             <h3 className="font-semibold text-slate-900">
+//               Персональное сопровождение
+//             </h3>
+//             <p className="mt-2 text-slate-600 text-sm">
+//               От первой консультации до завершения сделки: запись в офис, список
+//               документов, проверка «чистоты» криптовалюты.
+//             </p>
+//           </div>
+//         </div>
+//       </section>
+//     </div>
+//   );
+// }
+
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="flex flex-col">
       {/* HERO */}
-      <section className="flex min-h-[72vh] flex-col items-center justify-center text-center px-4">
-        <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
+      <section className="flex min-h-[60vh] flex-col items-center justify-center text-center px-4">
+        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
           AlpineBridgeFinance
         </h1>
 
-        <p className="mt-4 text-lg md:text-xl">
-          <span className="text-slate-700"> </span>
+        <p className="mt-3 text-base sm:text-lg md:text-xl">
           <span className="text-rose-500 font-medium">Fiat</span> ↔{" "}
           <span className="text-emerald-600 font-medium">Crypto</span> ↔{" "}
           <span className="text-amber-600 font-medium">Gold</span>{" "}
           <span className="text-slate-500">— Lugano, Switzerland</span>
         </p>
 
-        <p className="mt-2 text-sm text-slate-500">
+        <p className="mt-2 text-xs text-slate-500 sm:text-sm">
           Official platform coming soon
         </p>
 
-        <div className="mt-8 flex items-center gap-3">
+        <div className="mt-6 flex w-full max-w-md flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/contact"
-            className="rounded-full bg-black text-white px-5 py-2.5 text-sm md:text-base hover:opacity-90 transition"
+            className="w-full rounded-full bg-black px-5 py-3 text-center text-sm text-white hover:opacity-90 sm:w-auto"
           >
             Contact
           </Link>
           <Link
             href="/services"
-            className="rounded-full border border-slate-300 px-5 py-2.5 text-sm md:text-base hover:bg-slate-50 transition"
+            className="w-full rounded-full border border-slate-300 px-5 py-3 text-center text-sm hover:bg-slate-50 sm:w-auto"
           >
             Services
           </Link>
@@ -38,29 +108,32 @@ export default function Home() {
       </section>
 
       {/* FEATURES */}
-      <section className="px-4 pb-20">
-        <div className="grid gap-4 md:grid-cols-3 max-w-5xl mx-auto">
-          <div className="rounded-2xl border border-slate-200 p-6 bg-white">
-            <h3 className="font-semibold text-slate-900">Безопасно</h3>
-            <p className="mt-2 text-slate-600 text-sm">
-              Оффлайн-сделки в лицензированных швейцарских офисах. Ваши средства
-              не передаются третьим лицам.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 p-6 bg-white">
-            <h3 className="font-semibold text-slate-900">Легально</h3>
-            <p className="mt-2 text-slate-600 text-sm">
-              KYC/AML сопровождение, правила сумм и документов — всё прозрачно и
-              по закону.
-            </p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 p-6 bg-white">
-            <h3 className="font-semibold text-slate-900">
-              Персональное сопровождение
+      <section className="px-4 pb-14">
+        <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 md:grid-cols-3">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5">
+            <h3 className="text-base font-semibold text-slate-900 sm:text-lg">
+              Безопасно
             </h3>
-            <p className="mt-2 text-slate-600 text-sm">
-              От первой консультации до завершения сделки: запись в офис, список
-              документов, проверка «чистоты» криптовалюты.
+            <p className="mt-2 text-sm text-slate-600">
+              Сделки в лицензированных швейцарских офисах. Средства не
+              передаются третьим лицам.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-5">
+            <h3 className="text-base font-semibold text-slate-900 sm:text-lg">
+              Легально
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              KYC/AML сопровождение, прозрачные правила сумм и документов.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 md:col-span-1">
+            <h3 className="text-base font-semibold text-slate-900 sm:text-lg">
+              Персонально
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              От консультации до завершения сделки: запись в офис, список
+              документов, скрининг адресов.
             </p>
           </div>
         </div>

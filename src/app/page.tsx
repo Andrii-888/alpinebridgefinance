@@ -14,13 +14,15 @@ export default function Home() {
           <span className="text-rose-500 font-medium">Fiat</span> ↔{" "}
           <span className="text-emerald-600 font-medium">Crypto</span> ↔{" "}
           <span className="text-amber-600 font-medium">Gold</span>{" "}
-          <span className="text-slate-500">— Lugano, Switzerland</span>
         </p>
-
         <p className="mt-3 text-xs text-slate-500 sm:text-sm">
           Official platform coming soon
         </p>
+        <p className="mt-3 text-xs text-slate-500 sm:text-sm">
+          <span className="mt-3 text-slate-500">Lugano, Switzerland</span>
+        </p>
 
+        {/* 
         <div className="mt-8 flex w-full max-w-md flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/request"
@@ -29,18 +31,17 @@ export default function Home() {
             Request
           </Link>
 
-          {/* QR для быстрого открытия на телефоне — скрыт на мобилке */}
-          <section className="hidden md:block px-4 pb-14">
-            <QRCodeCard />
-          </section>
-
           <Link
             href="/services"
             className="w-full rounded-full border border-slate-300 px-6 py-3 text-center text-sm font-medium text-slate-900 transition hover:bg-slate-50 sm:w-auto"
           >
             Services
           </Link>
-        </div>
+        </div> */}
+        {/* QR для быстрого открытия на телефоне — скрыт на мобилке */}
+        <section className="mt-3 hidden md:block px-4 pb-8">
+          <QRCodeCard />
+        </section>
       </section>
 
       {/* FEATURES */}

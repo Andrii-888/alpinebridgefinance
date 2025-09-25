@@ -10,7 +10,7 @@ const nav = [
   { href: "/process", label: "Process" },
   { href: "/compliance", label: "Compliance" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/offices", label: "Offices" },
+  // { href: "/offices", label: "Offices" },
   { href: "/contact", label: "Contact" },
 ];
 

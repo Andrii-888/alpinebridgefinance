@@ -6,7 +6,7 @@ export default function Home() {
     <div className="flex flex-col">
       {/* HERO */}
       <section className="flex min-h-[70vh] flex-col items-center justify-center text-center px-6">
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
+        <h1 className="text-3xl font-semibold tracking-tight sm:text-5xl md:text-5xl">
           AlpineBridgeFinance
         </h1>
 
@@ -29,10 +29,11 @@ export default function Home() {
             Request
           </Link>
 
-          {/* QR для быстрого открытия на телефоне */}
-          <section className="px-4 pb-14">
+          {/* QR для быстрого открытия на телефоне — скрыт на мобилке */}
+          <section className="hidden md:block px-4 pb-14">
             <QRCodeCard />
           </section>
+
           <Link
             href="/services"
             className="w-full rounded-full border border-slate-300 px-6 py-3 text-center text-sm font-medium text-slate-900 transition hover:bg-slate-50 sm:w-auto"
@@ -60,7 +61,7 @@ export default function Home() {
           </div>
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:col-span-1">
             <h3 className="text-lg font-semibold text-slate-900">
-              Personalized. ✅
+              Personalized ✅
             </h3>
             <p className="mt-2 text-sm text-slate-600">
               From consultation to deal completion: office appointment, document

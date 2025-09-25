@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { TextAlignJustify, X } from "lucide-react";
+import { Globe, TextAlignJustify, X } from "lucide-react";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -17,35 +17,42 @@ const nav = [
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
-  // Блокируем скролл страницы при открытом меню
+  // Блокируем скролл + закрываем по Esc
   useEffect(() => {
     const prev = document.documentElement.style.overflow;
     document.documentElement.style.overflow = open ? "hidden" : prev || "";
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+
     return () => {
       document.documentElement.style.overflow = prev || "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
   return (
     <>
-      {/* фиксированный хедер; на мобиле при открытом меню он скрыт */}
+      {/* фиксированный хедер */}
       <header
         className={`fixed top-0 z-50 w-full border-b border-gray-200/60 bg-white/75 backdrop-blur supports-[backdrop-filter]:bg-white/60 ${
           open ? "md:block hidden" : ""
         }`}
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
-          {/* бренд показываем только на десктопе */}
+        <div className="relative mx-auto flex max-w-6xl items-center px-4 py-3 md:py-4">
+          {/* слева: язык */}
           <Link
-            href="/"
-            className="hidden font-medium tracking-tight text-gray-900 md:inline"
-            aria-label="AlpineBridgeFinance"
+            href="/language"
+            aria-label="Select language"
+            className="inline-flex items-center justify-center p-2 text-gray-900 hover:opacity-70 focus:outline-none"
           >
-            AlpineBridgeFinance
+            <Globe className="h-5 w-5" />
           </Link>
 
-          {/* десктоп-меню */}
-          <nav className="hidden items-center gap-6 text-sm text-gray-700 md:flex">
+          {/* центр: меню (десктоп) */}
+          <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-6 text-sm text-gray-700 md:flex">
             {nav.map((i) => (
               <Link
                 key={i.href}
@@ -57,44 +64,54 @@ export default function SiteHeader() {
             ))}
           </nav>
 
-          {/* мобильная кнопка (две черточки) */}
+          {/* справа: бургер (мобайл) */}
           <button
             aria-label="Open menu"
             onClick={() => setOpen(true)}
-            className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-300/70 md:hidden active:scale-95 transition"
+            className="ml-auto inline-flex items-center justify-center p-2 text-gray-900 hover:opacity-70 md:hidden focus:outline-none"
           >
-            <TextAlignJustify className="h-6 w-6 text-gray-900" />
+            <TextAlignJustify className="h-6 w-6" />
           </button>
         </div>
       </header>
 
-      {/* фуллскрин-меню на мобиле: без хедера/бренда, только крестик и ссылки */}
-      {open && (
-        <div className="fixed inset-0 z-[60] bg-white md:hidden">
-          {/* только крестик сверху справа */}
-          <button
-            aria-label="Close menu"
-            onClick={() => setOpen(false)}
-            className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-300/70 active:scale-95 transition bg-white"
-          >
-            <X className="h-6 w-6 text-gray-900" />
-          </button>
+      {/* фуллскрин-меню (мобайл) */}
+      <div
+        aria-hidden={!open}
+        className={`fixed inset-0 z-[60] bg-white md:hidden transition-opacity duration-300 ${
+          open
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* крестик */}
+        <button
+          aria-label="Close menu"
+          onClick={() => setOpen(false)}
+          className="absolute right-4 top-4 inline-flex items-center justify-center p-2 text-gray-900 hover:opacity-70 focus:outline-none"
+        >
+          <X className="h-6 w-6" />
+        </button>
 
-          {/* список ссылок по центру экрана */}
-          <nav className="flex h-full flex-col items-center justify-center gap-6 px-6 text-2xl font-medium text-gray-800 md:text-3xl">
-            {nav.map((i) => (
-              <Link
-                key={i.href}
-                href={i.href}
-                onClick={() => setOpen(false)}
-                className="hover:text-gray-600 transition-colors"
-              >
-                {i.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
+        {/* список ссылок */}
+        <nav
+          className={`flex h-full flex-col items-center justify-center gap-6 px-6 text-2xl font-medium text-gray-800 transition-opacity duration-300 ${
+            open ? "opacity-100" : "opacity-0"
+          } md:text-3xl`}
+        >
+          {nav.map((i, idx) => (
+            <Link
+              key={i.href}
+              href={i.href}
+              onClick={() => setOpen(false)}
+              className="hover:text-gray-600 transition-colors"
+              style={{ transitionDelay: open ? `${idx * 40}ms` : "0ms" }}
+            >
+              {i.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </>
   );
 }

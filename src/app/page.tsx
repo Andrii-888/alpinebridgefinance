@@ -1,5 +1,5 @@
 import QRCodeCard from "@/components/qr/QRCodeCard";
-import Link from "next/link";
+
 
 export default function Home() {
   return (

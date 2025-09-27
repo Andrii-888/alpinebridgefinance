@@ -3,21 +3,12 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Globe, TextAlignJustify, X } from "lucide-react";
-
-const nav = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/process", label: "Process" },
-  { href: "/compliance", label: "Compliance" },
-  { href: "/pricing", label: "Pricing" },
-  // { href: "/offices", label: "Offices" },
-  { href: "/contact", label: "Contact" },
-];
+import { NAV_LINKS } from "@/config/nav";
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
-  // Блокируем скролл + закрываем по Esc
+  // блокируем скролл + закрытие по ESC
   useEffect(() => {
     const prev = document.documentElement.style.overflow;
     document.documentElement.style.overflow = open ? "hidden" : prev || "";
@@ -35,14 +26,14 @@ export default function SiteHeader() {
 
   return (
     <>
-      {/* фиксированный хедер */}
+      {/* фиксированный хедер с заданной высотой */}
       <header
-        className={`fixed top-0 z-50 w-full border-b border-gray-200/60 bg-white/75 backdrop-blur supports-[backdrop-filter]:bg-white/60 ${
-          open ? "md:block hidden" : ""
-        }`}
+        className={`fixed top-0 z-50 w-full border-b border-gray-200/60 
+        bg-white/75 backdrop-blur supports-[backdrop-filter]:bg-white/60 
+        h-14 md:h-16`} // ← фиксируем высоту (56px / 64px)
       >
-        <div className="relative mx-auto flex max-w-6xl items-center px-4 py-3 md:py-4">
-          {/* слева: язык */}
+        <div className="relative mx-auto flex h-full max-w-6xl items-center px-4">
+          {/* слева: выбор языка */}
           <Link
             href="/language"
             aria-label="Select language"
@@ -51,9 +42,9 @@ export default function SiteHeader() {
             <Globe className="h-5 w-5" />
           </Link>
 
-          {/* центр: меню (десктоп) */}
+          {/* центр: меню (desktop) */}
           <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-6 text-sm text-gray-700 md:flex">
-            {nav.map((i) => (
+            {NAV_LINKS.map((i) => (
               <Link
                 key={i.href}
                 href={i.href}
@@ -64,7 +55,7 @@ export default function SiteHeader() {
             ))}
           </nav>
 
-          {/* справа: бургер (мобайл) */}
+          {/* справа: бургер (mobile) */}
           <button
             aria-label="Open menu"
             onClick={() => setOpen(true)}
@@ -75,7 +66,7 @@ export default function SiteHeader() {
         </div>
       </header>
 
-      {/* фуллскрин-меню (мобайл) */}
+      {/* fullscreen меню (mobile) */}
       <div
         aria-hidden={!open}
         className={`fixed inset-0 z-[60] bg-white md:hidden transition-opacity duration-300 ${
@@ -99,7 +90,7 @@ export default function SiteHeader() {
             open ? "opacity-100" : "opacity-0"
           } md:text-3xl`}
         >
-          {nav.map((i, idx) => (
+          {NAV_LINKS.map((i, idx) => (
             <Link
               key={i.href}
               href={i.href}

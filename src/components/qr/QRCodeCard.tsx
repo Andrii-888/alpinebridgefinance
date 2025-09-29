@@ -19,10 +19,19 @@ export default function QRCodeCard({ url }: Props) {
   const value = url || fallbackUrl;
 
   return (
-    <div className="mx-auto w-full max-w-sm rounded-2xl border border-gray-200 bg-white p-5 text-center shadow-sm">
-      <h3 className="text-m font-semibold text-gray-900">Open on your phone</h3>
+    <div
+      className="mx-auto w-full max-w-sm rounded-2xl border border-gray-200/20 
+                 bg-[var(--surface)] p-6 text-center shadow-lg 
+                 transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl"
+    >
+      <h3 className="text-lg font-semibold text-gray-100">
+        Scan to open mobile version
+      </h3>
 
-      <div className="mx-auto w-[160px] rounded-xl bg-white p-1 shadow-sm">
+      <div
+        className="mx-auto mt-4 w-[170px] rounded-xl bg-white p-3 shadow-md 
+                   transition-transform duration-300 hover:scale-[1.05]"
+      >
         <QRCode
           value={value}
           size={160}
@@ -33,7 +42,7 @@ export default function QRCodeCard({ url }: Props) {
         />
       </div>
 
-      <p className="mt-4 text-sm text-gray-500">Scan the code</p>
+      <p className="mt-4 text-sm text-gray-400">Available anytime, anywhere</p>
     </div>
   );
 }

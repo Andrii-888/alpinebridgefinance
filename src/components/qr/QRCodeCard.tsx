@@ -2,10 +2,7 @@
 
 import QRCode from "react-qr-code";
 
-type Props = {
-  /** Куда ведёт QR. Если не передать — возьмём адрес сайта из env или window */
-  url?: string;
-};
+type Props = { url?: string };
 
 export default function QRCodeCard({ url }: Props) {
   const fallbackUrl =
@@ -20,21 +17,17 @@ export default function QRCodeCard({ url }: Props) {
 
   return (
     <div
-      className="mx-auto w-full max-w-sm rounded-2xl border border-gray-200/20 
-                 bg-[var(--surface)] p-6 text-center shadow-lg 
-                 transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl"
+      className="mx-auto w-full max-w-sm rounded-2xl border border-gray-200/70
+                 bg-[var(--surface)] p-4 text-center shadow-lg overflow-hidden"
     >
-      <h3 className="text-lg font-semibold text-gray-100">
+      <h3 className="text-sm sm:text-base font-semibold text-black">
         Scan to open mobile version
       </h3>
 
-      <div
-        className="mx-auto mt-4 w-[170px] rounded-xl bg-white p-3 shadow-md 
-                   transition-transform duration-300 hover:scale-[1.05]"
-      >
+      <div className="mx-auto mt-3 w-full max-w-[128px] rounded-xl bg-white p-2 shadow-md">
         <QRCode
           value={value}
-          size={160}
+          size={120}
           style={{ height: "auto", maxWidth: "100%", width: "100%" }}
           bgColor="#ffffff"
           fgColor="#111827"
@@ -42,7 +35,9 @@ export default function QRCodeCard({ url }: Props) {
         />
       </div>
 
-      <p className="mt-4 text-sm text-gray-400">Available anytime, anywhere</p>
+      <p className="mt-2 text-xs sm:text-sm text-black">
+        Available anytime, anywhere
+      </p>
     </div>
   );
 }

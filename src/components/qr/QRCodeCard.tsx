@@ -4,7 +4,7 @@ import QRCode from "react-qr-code";
 
 type Props = { url?: string };
 
-export default function QRCodeCard({ url }: Props) {
+export default function QrSimple({ url }: Props) {
   const fallbackUrl =
     process.env.NEXT_PUBLIC_SITE_URL &&
     process.env.NEXT_PUBLIC_SITE_URL.trim() !== ""
@@ -16,27 +16,27 @@ export default function QRCodeCard({ url }: Props) {
   const value = url || fallbackUrl;
 
   return (
-    <div
-      className="mx-auto w-full max-w-sm rounded-2xl border border-gray-200/70
-                 bg-[var(--surface)] p-4 text-center shadow-lg overflow-hidden"
-    >
-      <h3 className="text-sm sm:text-base font-semibold text-black">
-        Scan to open mobile version
-      </h3>
-
-      <div className="mx-auto mt-3 w-full max-w-[128px] rounded-xl bg-white p-2 shadow-md">
+    <div className="mt-4 flex flex-col items-center">
+      <div
+        className="
+          w-[80px] h-[80px]
+          sm:w-[96px] sm:h-[96px]
+          lg:w-[112px] lg:h-[112px]
+          bg-white p-1 rounded-lg shadow-sm
+        "
+      >
         <QRCode
           value={value}
-          size={120}
-          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+          size={128}
+          style={{ height: "100%", width: "100%" }}
           bgColor="#ffffff"
           fgColor="#111827"
           level="M"
         />
       </div>
 
-      <p className="mt-2 text-xs sm:text-sm text-black">
-        Available anytime, anywhere
+      <p className="mt-2 text-xs sm:text-sm font-medium text-slate-700">
+        Install the App
       </p>
     </div>
   );

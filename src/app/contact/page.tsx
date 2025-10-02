@@ -1,6 +1,6 @@
 // app/contact/page.tsx
 import type { Metadata } from "next";
-import Link from "next/link";
+// import Link from "next/link";
 import {
   Mail,
   Phone,
@@ -24,12 +24,9 @@ export default function ContactPage() {
       <section className="rounded-2xl bg-gradient-to-r from-[var(--color-fiat)] via-[var(--color-crypto)] to-[var(--color-gold)] p-[1px] shadow-lg">
         <div className="rounded-2xl bg-white/85 p-6 md:p-10 text-center backdrop-blur">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-[var(--color-fiat)] via-[var(--color-crypto)] to-[var(--color-gold)] bg-clip-text text-transparent">
-            Contact AlpineBridgeFinance
+            AlpineBridgeFinance
           </h1>
-          <p className="mt-2 text-sm text-gray-600">
-            Licensed Swiss offices. Fiat ↔ Crypto ↔ Gold.
-          </p>
-          
+          <p className="mt-2 text-sm text-gray-600">Fiat ↔ Crypto ↔ Gold.</p>
         </div>
       </section>
 

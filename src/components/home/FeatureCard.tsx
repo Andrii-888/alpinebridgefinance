@@ -15,7 +15,7 @@ export default function FeatureCard({ Icon, title, text, color }: Props) {
       className="
         rounded-2xl
         bg-gradient-to-r from-[var(--color-fiat)] via-[var(--color-crypto)] to-[var(--color-gold)]
-        p-[1px] shadow-md flex-shrink-0
+        p-[1px] shadow-md
       "
     >
       <div

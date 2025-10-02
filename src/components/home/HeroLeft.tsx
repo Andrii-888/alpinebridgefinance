@@ -41,24 +41,20 @@ export default function HeroLeft() {
       </ul>
 
       {/* CTA + QR */}
-      <div className="mt-2 w-full sm:w-auto">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4">
-          {/* кнопка */}
-          <a
-            href="#consult"
-            className="block w-full sm:w-[260px] text-center rounded-xl px-5 py-3 text-sm sm:text-base font-medium
-                   bg-[var(--color-crypto)] text-white transition-transform duration-200 active:scale-[0.98]
-                   hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0
-                   focus-visible:ring-[var(--color-crypto)]"
-          >
-            Get Consultation
-          </a>
+      <div className="mt-2 w-full sm:w-auto flex flex-col items-center gap-3">
+        {/* кнопка */}
+        <a
+          href="#consult"
+          className="block w-full sm:w-[260px] text-center rounded-xl px-5 py-3 text-sm sm:text-base font-medium
+                 bg-[var(--color-crypto)] text-white transition-transform duration-200 active:scale-[0.98]
+                 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0
+                 focus-visible:ring-[var(--color-crypto)]"
+        >
+          Get Consultation
+        </a>
 
-          {/* QR справа на desktop, снизу на mobile */}
-          <div className="mt-3 sm:mt-0">
-            <QRCodeCard />
-          </div>
-        </div>
+        {/* QR всегда под кнопкой */}
+        <QRCodeCard />
       </div>
     </div>
   );

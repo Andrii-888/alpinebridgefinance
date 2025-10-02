@@ -16,18 +16,24 @@ export default function QrSimple({ url }: Props) {
   const value = url || fallbackUrl;
 
   return (
-    <div className="mt-4 flex flex-col items-center">
+    <div
+      className="
+        flex flex-col items-center
+        order-1 lg:order-first
+        mt-3 lg:mt-0
+      "
+    >
       <div
         className="
-          w-[80px] h-[80px]
-          sm:w-[96px] sm:h-[96px]
-          lg:w-[112px] lg:h-[112px]
+          w-[64px] h-[64px]
+          sm:w-[80px] sm:h-[80px]
+          lg:w-[64px] lg:h-[64px]
           bg-white p-1 rounded-lg shadow-sm
         "
       >
         <QRCode
           value={value}
-          size={128}
+          size={96}
           style={{ height: "100%", width: "100%" }}
           bgColor="#ffffff"
           fgColor="#111827"
@@ -35,7 +41,7 @@ export default function QrSimple({ url }: Props) {
         />
       </div>
 
-      <p className="mt-2 text-xs sm:text-sm font-medium text-slate-700">
+      <p className="mt-1 text-[11px] sm:text-xs font-medium text-slate-700">
         Install the App
       </p>
     </div>

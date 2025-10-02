@@ -21,7 +21,8 @@ export default function ProcessPage() {
       {/* HERO — аккуратный градиентный кант */}
       <section className="rounded-2xl bg-gradient-to-r from-[var(--color-fiat)] via-[var(--color-crypto)] to-[var(--color-gold)] p-[1px] shadow-lg">
         <div className="rounded-2xl bg-white/85 p-6 md:p-10 backdrop-blur">
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          {/* до lg — колонка, чтобы на планшете не ломалось */}
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-[var(--color-fiat)] via-[var(--color-crypto)] to-[var(--color-gold)] bg-clip-text text-transparent">
                 How the Process Works
@@ -50,7 +51,7 @@ export default function ProcessPage() {
             </div>
 
             {/* мини-бейджи доверия */}
-            <ul className="grid grid-cols-2 gap-3 md:w-80">
+            <ul className="grid grid-cols-2 gap-3 w-full lg:w-80">
               {[
                 { Icon: ShieldCheck, label: "Compliance-first" },
                 { Icon: Lock, label: "Secure Offices" },
@@ -59,10 +60,12 @@ export default function ProcessPage() {
               ].map(({ Icon, label }) => (
                 <li
                   key={label}
-                  className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white p-3 hover:shadow-sm transition-shadow"
+                  className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white p-3 hover:shadow-sm transition-shadow min-w-0"
                 >
-                  <Icon className="h-5 w-5 text-[var(--color-crypto)]" />
-                  <span className="text-sm font-medium">{label}</span>
+                  <Icon className="h-5 w-5 text-[var(--color-crypto)] shrink-0" />
+                  <span className="text-sm font-medium leading-tight break-words whitespace-normal">
+                    {label}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -136,7 +139,9 @@ export default function ProcessPage() {
                 </span>
                 <Icon className="h-5 w-5 text-[var(--color-gold)]" />
               </div>
-              <h3 className="mt-3 text-base font-semibold">{title}</h3>
+              <h3 className="mt-3 text-base font-semibold leading-tight break-words whitespace-normal">
+                {title}
+              </h3>
               <p className="mt-2 text-sm text-slate-700">{desc}</p>
               <p className="mt-3 text-xs font-medium text-slate-600">
                 Typical time: {time}
@@ -202,9 +207,11 @@ export default function ProcessPage() {
               className="group relative rounded-2xl p-[1px] bg-gradient-to-r from-transparent via-transparent to-transparent hover:from-[var(--color-fiat)]/20 hover:via-[var(--color-crypto)]/20 hover:to-[var(--color-gold)]/20 transition-colors"
             >
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <Icon className="h-6 w-6 text-[var(--color-crypto)]" />
-                  <h3 className="text-base font-semibold">{title}</h3>
+                <div className="flex items-center gap-3 min-w-0">
+                  <Icon className="h-6 w-6 text-[var(--color-crypto)] shrink-0" />
+                  <h3 className="text-base font-semibold leading-tight break-words whitespace-normal">
+                    {title}
+                  </h3>
                 </div>
                 <p className="mt-3 text-sm text-slate-700">{text}</p>
               </div>
@@ -242,9 +249,11 @@ export default function ProcessPage() {
               key={city}
               className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow transition-shadow"
             >
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-[var(--color-gold)]" />
-                <h3 className="text-base font-semibold">{city}</h3>
+              <div className="flex items-center gap-3 min-w-0">
+                <MapPin className="h-5 w-5 text-[var(--color-gold)] shrink-0" />
+                <h3 className="text-base font-semibold leading-tight break-words whitespace-normal">
+                  {city}
+                </h3>
               </div>
               <p className="mt-2 text-sm text-slate-700">{note}</p>
               <div className="mt-3">
@@ -287,9 +296,11 @@ export default function ProcessPage() {
               key={q}
               className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
             >
-              <div className="flex items-center gap-2">
-                <HelpCircle className="h-5 w-5 text-[var(--color-fiat)]" />
-                <h3 className="font-semibold">{q}</h3>
+              <div className="flex items-center gap-2 min-w-0">
+                <HelpCircle className="h-5 w-5 text-[var(--color-fiat)] shrink-0" />
+                <h3 className="font-semibold leading-tight break-words whitespace-normal">
+                  {q}
+                </h3>
               </div>
               <p className="mt-2 text-sm text-slate-700">{a}</p>
             </div>
@@ -306,7 +317,7 @@ export default function ProcessPage() {
 
       {/* CTA финальная */}
       <section className="mt-12 rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 p-6 md:p-8 shadow-inner">
-        <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h3 className="text-lg sm:text-xl font-semibold">
               Ready to start?

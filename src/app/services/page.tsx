@@ -1,35 +1,3 @@
-// export default function ServicesPage() {
-//   return (
-//     <div className="mx-auto w-full max-w-6xl px-4 py-10">
-//       <h1 className="text-3xl sm:text-4xl font-bold mb-6">Our Services</h1>
-
-//       <p className="text-slate-700 mb-4">
-//         We prepare and guide clients through secure{" "}
-//         <span className="font-medium">Fiat ↔ Crypto ↔ Gold</span> transactions
-//         in licensed Swiss offices. Our work is not just about exchange — it’s
-//         about building trust and ensuring compliance.
-//       </p>
-
-//       <p className="text-slate-700 mb-4">
-//         Each client receives{" "}
-//         <span className="font-medium">personal consultation</span>, a clear
-//         explanation of KYC/AML requirements, and full support before and during
-//         the deal.
-//       </p>
-
-//       <h2 className="text-xl font-semibold mt-6 mb-3">What we provide:</h2>
-//       <ul className="list-disc list-inside space-y-2 text-slate-700">
-//         <li>Personal consultation and deal preparation</li>
-//         <li>KYC/AML guidance</li>
-//         <li>In-person meetings in one of our Swiss offices</li>
-//         <li>
-//           Partnership network with banks, notaries, and real estate experts
-//         </li>
-//       </ul>
-//     </div>
-//   );
-// }
-
 "use client";
 
 import Link from "next/link";
@@ -53,7 +21,8 @@ export default function ServicesPage() {
       {/* HERO — градиентный кант + светлая подложка */}
       <section className="rounded-2xl bg-gradient-to-r from-[var(--color-fiat)] via-[var(--color-crypto)] to-[var(--color-gold)] p-[1px] shadow-lg">
         <div className="rounded-2xl bg-white/85 p-6 md:p-10 backdrop-blur">
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          {/* ⬇️ до lg оставляем колонку, чтобы на планшете ничего не вылазило */}
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-[var(--color-fiat)] via-[var(--color-crypto)] to-[var(--color-gold)] bg-clip-text text-transparent">
                 End-to-end Deal Support in Switzerland
@@ -83,7 +52,8 @@ export default function ServicesPage() {
             </div>
 
             {/* Trust mini-badges */}
-            <ul className="grid grid-cols-2 gap-3 md:w-80">
+            {/* ⬇️ на md: занимают всю ширину и переносятся; на lg: фиксированная ширина */}
+            <ul className="grid grid-cols-2 gap-3 w-full lg:w-80">
               {[
                 { Icon: ShieldCheck, label: "Compliance-first" },
                 { Icon: Lock, label: "KYC/AML Guidance" },
@@ -92,10 +62,12 @@ export default function ServicesPage() {
               ].map(({ Icon, label }) => (
                 <li
                   key={label}
-                  className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white p-3 hover:shadow-sm transition-shadow"
+                  className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white p-3 hover:shadow-sm transition-shadow min-w-0"
                 >
-                  <Icon className="h-5 w-5 text-[var(--color-crypto)]" />
-                  <span className="text-sm font-medium">{label}</span>
+                  <Icon className="h-5 w-5 text-[var(--color-crypto)] shrink-0" />
+                  <span className="text-sm font-medium leading-tight break-words whitespace-normal">
+                    {label}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -103,7 +75,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* VALUE PROPS — карточки с лёгким градиентным ховером */}
+      {/* VALUE PROPS — карточки */}
       <section className="mt-10">
         <h2 className="text-xl sm:text-2xl font-semibold">What we provide</h2>
         <p className="mt-2 text-slate-700">
@@ -149,9 +121,11 @@ export default function ServicesPage() {
               className="group relative rounded-2xl p-[1px] bg-gradient-to-r from-transparent via-transparent to-transparent hover:from-[var(--color-fiat)]/20 hover:via-[var(--color-crypto)]/20 hover:to-[var(--color-gold)]/20 transition-colors"
             >
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <Icon className="h-6 w-6 text-[var(--color-gold)]" />
-                  <h3 className="text-base font-semibold">{title}</h3>
+                <div className="flex items-center gap-3 min-w-0">
+                  <Icon className="h-6 w-6 text-[var(--color-gold)] shrink-0" />
+                  <h3 className="text-base font-semibold leading-tight break-words whitespace-normal">
+                    {title}
+                  </h3>
                 </div>
                 <p className="mt-3 text-sm text-slate-700">{text}</p>
               </div>
@@ -160,7 +134,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* PROCESS PREVIEW — шаги с акцентными номерами */}
+      {/* PROCESS PREVIEW */}
       <section className="mt-12">
         <h2 className="text-xl sm:text-2xl font-semibold">
           A clear, 5-step flow
@@ -229,9 +203,11 @@ export default function ServicesPage() {
               key={city}
               className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow transition-shadow"
             >
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-[var(--color-crypto)]" />
-                <h3 className="text-base font-semibold">{city}</h3>
+              <div className="flex items-center gap-3 min-w-0">
+                <MapPin className="h-5 w-5 text-[var(--color-crypto)] shrink-0" />
+                <h3 className="text-base font-semibold leading-tight break-words whitespace-normal">
+                  {city}
+                </h3>
               </div>
               <p className="mt-2 text-sm text-slate-700">{note}</p>
               <div className="mt-3">
@@ -250,7 +226,7 @@ export default function ServicesPage() {
 
       {/* CTA — градиентная вторичная кнопка */}
       <section className="mt-12 rounded-2xl border border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100 p-6 md:p-8 shadow-inner">
-        <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h3 className="text-lg sm:text-xl font-semibold">
               Ready to prepare your deal?

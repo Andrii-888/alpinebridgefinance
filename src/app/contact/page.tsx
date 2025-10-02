@@ -29,9 +29,7 @@ export default function ContactPage() {
           <p className="mt-2 text-sm text-gray-600">
             Licensed Swiss offices. Fiat ↔ Crypto ↔ Gold.
           </p>
-          <p className="mt-1 text-xs text-gray-500">
-            We’ll reply within 24 hours.
-          </p>
+          
         </div>
       </section>
 

@@ -2,6 +2,10 @@
 
 import QRCodeCard from "../qr/QRCodeCard";
 
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://alpinebridgefinance.vercel.app"
+).trim();
+
 export default function HeroLeft() {
   return (
     <div className="flex flex-col items-start gap-5 max-w-lg mt-[1rem] sm:mt-[-4rem]">
@@ -55,7 +59,7 @@ export default function HeroLeft() {
 
         {/* QR справа на планшете/десктопе, снизу на мобилке */}
         <div className="mt-3 sm:mt-0 flex justify-center sm:justify-start sm:pl-12">
-          <QRCodeCard />
+          <QRCodeCard url={SITE_URL} />
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import ClickShield from "../ClickShield";
 import QRCodeCard from "../qr/QRCodeCard";
 
 const SITE_URL = (
@@ -59,7 +60,17 @@ export default function HeroLeft() {
 
         {/* QR справа на планшете/десктопе, снизу на мобилке */}
         <div className="mt-3 sm:mt-0 flex justify-center sm:justify-start sm:pl-12">
-          <QRCodeCard url={SITE_URL} />
+          {/* ГЛОБАЛЬНЫЙ ЩИТ ДЛЯ ЭТОЙ ЗОНЫ */}
+          <ClickShield selector="#qr-zone" />
+
+          {/* ЗОНА QR (только она блокируется) */}
+          <div
+            id="qr-zone"
+            className="relative inline-block select-none [&_a]:pointer-events-none"
+          >
+            {/* сам QR — без ссылок */}
+            <QRCodeCard url={SITE_URL} />
+          </div>
         </div>
       </div>
     </div>

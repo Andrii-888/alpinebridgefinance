@@ -5,45 +5,47 @@ import QRCode from "react-qr-code";
 type Props = { url?: string };
 
 export default function QrSimple({ url }: Props) {
-  const fallbackUrl =
-    process.env.NEXT_PUBLIC_SITE_URL &&
-    process.env.NEXT_PUBLIC_SITE_URL.trim() !== ""
-      ? process.env.NEXT_PUBLIC_SITE_URL
-      : typeof window !== "undefined"
-      ? window.location.origin
-      : "http://localhost:3000";
+  // Домен из .env (NEXT_PUBLIC_SITE_URL), без лишних пробелов
+  const envUrl = (process.env.NEXT_PUBLIC_SITE_URL || "").trim();
 
-  const value = url || fallbackUrl;
+  const isBrowser = typeof window !== "undefined";
+  const isLocalhost =
+    isBrowser &&
+    /^(localhost|127\.0\.0\.1|::1)$/.test(window.location.hostname);
+
+  // Приоритет: проп url > .env > window.origin (если не localhost)
+  const value =
+    url ||
+    (envUrl ? envUrl : isBrowser && !isLocalhost ? window.location.origin : "");
 
   return (
-    <div
-      className="
-        flex flex-col items-center
-        order-1 lg:order-first
-        mt-3 lg:mt-0
-      "
+    <a
+      href={value || undefined}
+      target={value ? "_blank" : undefined}
+      rel={value ? "noopener noreferrer" : undefined}
+      className="flex flex-col items-center order-1 lg:order-first mt-3 lg:mt-0 cursor-pointer transition-transform duration-200 hover:scale-105"
+      aria-label="Open app link"
     >
       <div
         className="
-          w-[64px] h-[64px]
-          sm:w-[80px] sm:h-[80px]
-          lg:w-[64px] lg:h-[64px]
-          bg-white p-1 rounded-lg shadow-sm
+          w-[96px] h-[96px]
+          sm:w-[112px] sm:h-[112px]
+          lg:w-[96px] lg:h-[96px]
+          bg-white p-2 rounded-lg shadow-sm
         "
       >
         <QRCode
-          value={value}
-          size={96}
-          style={{ height: "100%", width: "100%" }}
+          value={value || "https://example.com"}
+          level="M"
+          style={{ width: "100%", height: "100%" }}
           bgColor="#ffffff"
           fgColor="#111827"
-          level="M"
         />
       </div>
 
       <p className="mt-1 text-[11px] sm:text-xs font-medium text-slate-700">
         Install the App
       </p>
-    </div>
+    </a>
   );
 }

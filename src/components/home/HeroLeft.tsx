@@ -41,7 +41,7 @@ export default function HeroLeft() {
       </ul>
 
       {/* CTA + QR */}
-      <div className="mt-2 w-full sm:w-auto flex flex-col items-center gap-3">
+      <div className="mt-3 w-full flex flex-col sm:flex-row sm:items-center sm:gap-4">
         {/* кнопка */}
         <a
           href="#consult"
@@ -53,8 +53,10 @@ export default function HeroLeft() {
           Get Consultation
         </a>
 
-        {/* QR всегда под кнопкой */}
-        <QRCodeCard />
+        {/* QR справа на планшете/десктопе, снизу на мобилке */}
+        <div className="mt-3 sm:mt-0 flex justify-center sm:justify-start sm:pl-12">
+          <QRCodeCard />
+        </div>
       </div>
     </div>
   );

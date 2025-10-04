@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-
 /** Схема валидации формы заявки */
 const RequestSchema = z.object({
   name: z.string().min(2, "Enter your full name"),
@@ -22,6 +21,7 @@ export default function RequestPage() {
   } = useForm<RequestData>({
     resolver: zodResolver(RequestSchema),
     mode: "onChange",
+    defaultValues: { name: "", email: "", message: "" },
   });
 
   const onSubmit = async (data: RequestData) => {
@@ -41,12 +41,14 @@ export default function RequestPage() {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-4"
           noValidate
+          aria-busy={isSubmitting}
         >
           {/* Name */}
           <div className="flex flex-col gap-1">
             <input
               type="text"
               placeholder="Your Name"
+              autoComplete="name"
               aria-invalid={!!errors.name}
               className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition ${
                 errors.name
@@ -67,6 +69,7 @@ export default function RequestPage() {
             <input
               type="email"
               placeholder="Email"
+              autoComplete="email"
               aria-invalid={!!errors.email}
               className={`w-full rounded-xl border px-4 py-3 text-sm outline-none transition ${
                 errors.email
@@ -104,6 +107,8 @@ export default function RequestPage() {
 
           <button
             type="submit"
+            disabled={!isValid || isSubmitting}
+            aria-disabled={!isValid || isSubmitting}
             className="mt-2 w-full rounded-xl px-5 py-3 text-sm font-medium !text-white transition active:scale-95 disabled:opacity-50
              !bg-[#0088ff] hover:!bg-[#007aff]"
           >

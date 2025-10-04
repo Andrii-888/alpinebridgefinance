@@ -3,25 +3,32 @@ import { useEffect } from "react";
 
 /**
  * Глобально перехватывает клики/тапы в capture-фазе
- * и отменяет их, если target находится внутри элемента
- * по CSS-селектору `selector`.
+ * и отменяет их, если target находится внутри элемента,
+ * совпадающего с CSS-селектором `selector`.
  */
 export default function ClickShield({ selector }: { selector: string }) {
   useEffect(() => {
     const stopIfInside = (e: Event) => {
       const root = document.querySelector(selector);
       if (!root) return;
+
       const target = e.target as Node | null;
       if (target && root.contains(target)) {
-        // «жёсткая» отмена
         e.preventDefault();
-        // @ts-ignore
-        e.stopImmediatePropagation?.();
-        e.stopPropagation();
+
+        // Безопасный вызов без ts-комментариев:
+        const ev = e as unknown as {
+          stopImmediatePropagation?: () => void;
+          stopPropagation: () => void;
+        };
+        if (typeof ev.stopImmediatePropagation === "function") {
+          ev.stopImmediatePropagation();
+        }
+        ev.stopPropagation();
       }
     };
 
-    // ВАЖНО: true => capture-фаза, раньше любых родителей
+    // capture: true → ловим событие раньше любых родителей/next/link
     document.addEventListener("click", stopIfInside, true);
     document.addEventListener("pointerdown", stopIfInside, true);
     document.addEventListener("touchstart", stopIfInside, true);

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { NavItem } from "@/config/nav";
-import { useTranslations } from "next-intl";
 
 type Props = {
   items: NavItem[];
@@ -21,16 +20,6 @@ export default function NavLinks({
   align = "center",
 }: Props) {
   const pathname = usePathname();
-
-  const t = useTranslations("nav");
-  const hrefToKey: Record<string, string> = {
-    "/": "home",
-    "/services": "services",
-    "/process": "process",
-    "/compliance": "compliance",
-    "/partners": "partners",
-    "/contact": "contact"
-  };
 
   const baseText =
     size === "sm"
@@ -59,7 +48,7 @@ export default function NavLinks({
               active ? "font-medium" : ""
             }`}
           >
-            {t(hrefToKey[i.href] ?? "") || i.label}
+            {i.label}
           </Link>
         );
       })}

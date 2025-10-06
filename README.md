@@ -477,3 +477,91 @@ Official agent of a Swiss company providing in-office crypto ↔ fiat exchanges 
 День 3: /process (5 шагов) + /compliance (tiers + FAQ).
 День 4: /offices (карта + 3 карточки) + /contact (короткая форма).
 День 5: Footer + микроанимации + доступность + общий полиш.
+
+
+
+
+
+
+
+
+
+
+Фаза 1 — Подготовка контента
+Namespaces и словари
+Заводим по файлу на страницу: nav, common, home, services, process, compliance, partners, pricing, contact, legal.
+Файлы: src/i18n/messages/{en,it,ru}/{namespace}.json.
+Common
+Ключи для кнопок/лейблов/форм: common.cta, common.submit, common.cancel, common.required, common.success, common.error.
+Фаза 2 — Перевод страниц (строго по одному файлу)
+Home
+Тексты: HeroLeft/HeroRight, кнопки.
+Файлы: home.json + подключение переводов в src/app/page.tsx и дочерних компонентах.
+Services
+Заголовок, карточки услуг, подзаголовки.
+Файлы: services.json + src/app/services/page.tsx (+ компоненты в /components если есть).
+Process
+Шаги процесса, подсказки.
+Файлы: process.json + src/app/process/page.tsx.
+Compliance
+AML/KYC блоки, предупреждения.
+Файлы: compliance.json + src/app/compliance/page.tsx.
+Partners
+Описания партнёров/баннеры.
+Файлы: partners.json + src/app/partners/page.tsx.
+Pricing
+Названия планов/примечания.
+Файлы: pricing.json + src/app/pricing/page.tsx.
+Contact & Request
+Поля формы, валидация, сообщения об успехе/ошибке (используем common).
+Файлы: contact.json + src/app/contact/page.tsx, при необходимости request.json + src/app/request/page.tsx.
+Legal
+Заголовки разделов, дисклеймеры.
+Файлы: legal.json + src/app/legal/page.tsx.
+Фаза 3 — Метаданные и SEO (после текстов)
+Локализованные метаданные
+Для каждой страницы: title, description через generateMetadata.
+Берём строки из соответствующего {namespace}.json (или seo.json).
+Sitemap/robots + hreflang (Фаза 4 — когда будем готовы)
+Включим маршруты /en | /it | /ru через [locale] + middleware.
+Добавим alternates.languages (hreflang), sitemap и robots.txt.
+Фаза 5 — Полировка
+Единые сообщения валидации
+Все формы используют ключи common.validation.*.
+Числа/даты/валюты
+Форматирование через next-intl (например, цены/даты на страницах).
+Проверка «missing keys»
+Прогон по всем страницам на EN/IT/RU, закрываем все отсутствующие ключи.
+
+
+
+
+
+Что делаем и зачем (без кода)
+src/i18n/routing.ts
+Определяем локали ['en','it','ru'] и defaultLocale: 'en' через next-intl/routing.
+Это источник правды для всех последующих шагов.
+middleware.ts
+Включаем createMiddleware(routing) и matcher.
+Результат: запросы без префикса редиректятся на /en/...; /it и /ru работают как отдельные ветки. Это база для SEO.
+src/app/[locale]/page.tsx
+Делает текущую главную доступной под /en, /it, /ru (можно простым реэкспортом существующей page.tsx).
+Нужен, чтобы маршруты с локалью сразу открывались.
+src/app/[locale]/layout.tsx
+Добавляем серверный NextIntlClientProvider с загрузкой словаря по params.locale.
+На этом шаге мы не трогаем твой корневой src/app/layout.tsx (оставим <html> там).
+Позже перенесём lang и SEO в локализованный layout.
+Навигация: SiteHeader.tsx и NavLinks.tsx
+Подставляем префикс текущей локали в href (чтобы из /it ссылки вели на /it/..., а не на /en/...).
+Тексты уже берутся из словаря — остаётся правильно строить URL.
+Страница выбора языка src/app/language/page.tsx
+Меняем логику: вместо localStorage → "/" делаем переход на "/{code}" (и опционально продолжаем писать код в localStorage для совместимости).
+После этого переключатель работает «по-правильному»: URL меняется, Google видит языковую версию.
+SEO (после маршрутов):
+В app/[locale]/layout.tsx добавим generateMetadata с alternates.languages (hreflang) и canonical.
+Создадим app/sitemap.ts с альтернативами для /en|/it|/ru.
+app/robots.txt с ссылкой на сайтмап.
+Это обеспечивает корректную индексацию и выдачу нужного языка в Google.
+Полировка:
+Перенос <html lang={locale}> в локализованный layout (и очистка старого провайдера WithIntl).
+При желании — локализованные слеги путей (например, /it/servizi, /ru/uslugi).

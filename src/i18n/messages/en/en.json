@@ -1,0 +1,10 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "process": "Process",
+    "compliance": "Compliance",
+    "partners": "Partners",
+    "contact": "Contact"
+  }
+}

@@ -3,22 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import { Globe, TextAlignJustify, X } from "lucide-react";
 import { NAV_LINKS } from "@/config/nav";
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
-
-  const t = useTranslations("nav");
-  const hrefToKey: Record<string, string> = {
-    "/": "home",
-    "/services": "services",
-    "/process": "process",
-    "/compliance": "compliance",
-    "/partners": "partners",
-    "/contact": "contact"
-  };
 
   useEffect(() => {
     const prev = document.documentElement.style.overflow;
@@ -69,7 +58,7 @@ export default function SiteHeader() {
                 href={i.href}
                 className="hover:text-gray-900 transition-colors"
               >
-                {t(hrefToKey[i.href] ?? "") || i.label}
+                {i.label}
               </Link>
             ))}
           </nav>
@@ -129,7 +118,7 @@ export default function SiteHeader() {
               className="hover:text-gray-600 transition-colors"
               style={{ transitionDelay: open ? `${idx * 40}ms` : "0ms" }}
             >
-              {t(hrefToKey[i.href] ?? "") || i.label}
+              {i.label}
             </Link>
           ))}
         </nav>
